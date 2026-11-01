@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes App</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'categories' %}">Categories</a>
+            <a href="{% url 'notes' %}">Notes</a>
+    </nav>
+
+    <form>
+        <label>
+            <input name="q" placeholder="Search Notes">
+        </label>
+        <button>
+            Submit
+        </button>
+    </form>
+    {% for note in notes %}
+        <h2>{{ note.title }}</h2>
+        <p>{{ note.body }}</p>
+    {% empty %}
+        <h1>We don`t have a note</h1>
+    {% endfor %}
+</body>
+</html>

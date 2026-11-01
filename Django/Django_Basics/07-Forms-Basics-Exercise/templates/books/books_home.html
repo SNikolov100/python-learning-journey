@@ -1,0 +1,97 @@
+{% extends 'shared/base.html' %}
+{% block content %}
+    <header class="topbar">
+        <div>
+            <p class="eyebrow">Library management</p>
+            <h1>Book details</h1>
+        </div>
+
+        <a class="button button-primary" href="#">Create book</a>
+    </header>
+
+    <section class="content-card">
+        <div class="book-cover" aria-hidden="true">
+            <span>BOOK</span>
+        </div>
+
+        <div class="book-information">
+            <div class="section-heading">
+                <div>
+                    <span class="status status-success">Available</span>
+                    <h2>{{ book.title|default:"Example book title" }}</h2>
+                </div>
+                <span class="price">{{ book.price|default:"29.90" }} BGN</span>
+            </div>
+
+            <p class="description">
+                {{ book.description|default:"The description of the selected book will be displayed here. You can reuse this page structure for list, create, edit, details and delete templates." }}
+            </p>
+
+            <dl class="details-grid">
+                <div class="detail-item">
+                    <dt>ISBN</dt>
+                    <dd>{{ book.isbn|default:"123456789012" }}</dd>
+                </div>
+
+                <div class="detail-item">
+                    <dt>Genre</dt>
+                    <dd>{{ book.get_genre_display|default:"Fiction" }}</dd>
+                </div>
+
+                <div class="detail-item">
+                    <dt>Language</dt>
+                    <dd>{{ book.get_language_display|default:"English" }}</dd>
+                </div>
+
+                <div class="detail-item">
+                    <dt>Pages</dt>
+                    <dd>{{ book.pages|default:"320" }}</dd>
+                </div>
+
+                <div class="detail-item">
+                    <dt>Publishing date</dt>
+                    <dd>{{ book.publishing_date|date:"d.m.Y"|default:"30.09.2026" }}</dd>
+                </div>
+
+                <div class="detail-item">
+                    <dt>Slug</dt>
+                    <dd>{{ book.slug|default:"example-book-title" }}</dd>
+                </div>
+            </dl>
+
+            <div class="actions">
+                <a class="button button-secondary" href="#">Edit book</a>
+                <a class="button button-danger" href="#">Delete book</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews-section">
+        <div class="reviews-heading">
+            <div>
+                <p class="eyebrow">Reader feedback</p>
+                <h2>Reviews</h2>
+            </div>
+            <a class="button button-secondary" href="#">Add review</a>
+        </div>
+
+        <article class="review-card">
+            <div class="review-header">
+                <div>
+                    <h3>{{ review.author|default:"Example author" }}</h3>
+                    <span>{{ review.get_review_type_display|default:"Reader review" }}</span>
+                </div>
+                <strong class="rating">{{ review.rating|default:"4.50" }} / 5</strong>
+            </div>
+
+            <p>{{ review.body|default:"The body of the review will be displayed here." }}</p>
+
+            <div class="review-footer">
+                <span class="status status-info">
+                    {% if review.is_verified %}Verified{% else %}Not verified{% endif %}
+                </span>
+                <span>Created: {{ review.created_at|date:"d.m.Y H:i"|default:"30.09.2026 18:00" }}</span>
+            </div>
+        </article>
+    </section>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'shared/base.html' %}
+{% block content %}
+    <div class="book-card">
+        <a href="{% url 'books:home' %}">Back to home</a>
+        <img src="{{ book.image_url }}" alt="{{ book.title }}">
+        <h3>Book Details:  {{ book.title }} </h3>
+        <h3>Title: {{ book.title }}</h3>
+        <h3>Description: {{ book.description }}</h3>
+    </div>
+{% endblock %}

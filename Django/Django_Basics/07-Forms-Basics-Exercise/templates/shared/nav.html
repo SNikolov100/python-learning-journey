@@ -1,0 +1,41 @@
+<aside class="sidebar">
+    <a class="brand" href="#">
+        <span class="brand-icon">BL</span>
+        <span>Book Library</span>
+    </a>
+
+    <nav class="navigation" aria-label="Main navigation">
+        <p class="navigation-title">Navigation</p>
+
+        <!-- Replace # with your Django URL tags. -->
+        <a class="navigation-link active" href="#">
+            <span class="navigation-icon">⌂</span>
+            <span>Home</span>
+        </a>
+
+        <a class="navigation-link" href="{%  url 'books:create' %}">
+            <span class="navigation-icon">＋</span>
+            <span>Create</span>
+        </a>
+
+        <a class="navigation-link" href="{% url 'books:list' %}">
+            <span class="navigation-icon">○</span>
+            <span>Lists</span>
+        </a>
+
+        <a class="navigation-link" href="#">
+            <span class="navigation-icon">✎</span>
+            <span>Edit</span>
+        </a>
+
+        <a class="navigation-link danger-link" href="#">
+            <span class="navigation-icon">×</span>
+            <span>Delete</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <p>Django Forms Exercise</p>
+        <span>Books and reviews</span>
+    </div>
+</aside>

@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'shared/header.html' %}
+<body>
+    <div class="page-layout">
+        {% include 'shared/nav.html' %}
+
+        <main class="main-content">
+            {% block content %}
+            {% endblock %}
+
+            {% include 'shared/footer.html' %}
+        </main>
+    </div>
+</body>
+</html>

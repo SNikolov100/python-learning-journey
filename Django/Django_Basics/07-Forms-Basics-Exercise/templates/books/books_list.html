@@ -1,0 +1,18 @@
+{% extends 'shared/base.html' %}
+{% block content %}
+    <h2>Books List</h2>
+
+    <div class="book-container">
+        {% for book in books %}
+        <div class="book-card">
+            <img src="{{ book.image_url }}" alt="{{ book.title }}">
+            <h3>Title: {{ book.title }}</h3>
+            <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+            <p><strong>Language:</strong> {{ book.get_language_display }}</p>
+            <p><strong>pages:</strong> {{ book.pages }}</p>
+            <a href="{% url 'books:details' book.id %}"> View Details</a>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

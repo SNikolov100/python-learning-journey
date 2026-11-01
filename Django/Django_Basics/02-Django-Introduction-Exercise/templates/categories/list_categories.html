@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes App</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'categories' %}">Categories</a>
+        <a href="{% url 'notes' %}">Dashboard</a>
+    </nav>
+    <form>
+        <label>
+            <input name="q" placeholder="Search Notes">
+        </label>
+        <button>
+            Submit
+        </button>
+    </form>
+    {% for category in categories %}
+        <h2>{{ category }}</h2>
+        <p>{{ category.description }}</p>
+    {% empty %}
+        <h1>We don`t have a category</h1>
+    {% endfor %}
+</body>
+</html>

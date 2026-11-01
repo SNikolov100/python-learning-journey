@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Library</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="page-layout">
+        <aside class="sidebar">
+            <a class="brand" href="#">
+                <span class="brand-icon">BL</span>
+                <span>Book Library</span>
+            </a>
+
+            <nav class="navigation" aria-label="Main navigation">
+                <p class="navigation-title">Navigation</p>
+
+                <!-- Replace # with your Django URL tags. -->
+                <a class="navigation-link active" href="#">
+                    <span class="navigation-icon">⌂</span>
+                    <span>Home</span>
+                </a>
+
+                <a class="navigation-link" href="#">
+                    <span class="navigation-icon">＋</span>
+                    <span>Create</span>
+                </a>
+
+                <a class="navigation-link" href="#">
+                    <span class="navigation-icon">○</span>
+                    <span>Details</span>
+                </a>
+
+                <a class="navigation-link" href="#">
+                    <span class="navigation-icon">✎</span>
+                    <span>Edit</span>
+                </a>
+
+                <a class="navigation-link danger-link" href="#">
+                    <span class="navigation-icon">×</span>
+                    <span>Delete</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Django Forms Exercise</p>
+                <span>Books and reviews</span>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">Library management</p>
+                    <h1>Book details</h1>
+                </div>
+
+                <a class="button button-primary" href="#">Create book</a>
+            </header>
+
+            <section class="content-card">
+                <div class="book-cover" aria-hidden="true">
+                    <span>BOOK</span>
+                </div>
+
+                <div class="book-information">
+                    <div class="section-heading">
+                        <div>
+                            <span class="status status-success">Available</span>
+                            <h2>{{ book.title|default:"Example book title" }}</h2>
+                        </div>
+                        <span class="price">{{ book.price|default:"29.90" }} BGN</span>
+                    </div>
+
+                    <p class="description">
+                        {{ book.description|default:"The description of the selected book will be displayed here. You can reuse this page structure for list, create, edit, details and delete templates." }}
+                    </p>
+
+                    <dl class="details-grid">
+                        <div class="detail-item">
+                            <dt>ISBN</dt>
+                            <dd>{{ book.isbn|default:"123456789012" }}</dd>
+                        </div>
+
+                        <div class="detail-item">
+                            <dt>Genre</dt>
+                            <dd>{{ book.get_genre_display|default:"Fiction" }}</dd>
+                        </div>
+
+                        <div class="detail-item">
+                            <dt>Language</dt>
+                            <dd>{{ book.get_language_display|default:"English" }}</dd>
+                        </div>
+
+                        <div class="detail-item">
+                            <dt>Pages</dt>
+                            <dd>{{ book.pages|default:"320" }}</dd>
+                        </div>
+
+                        <div class="detail-item">
+                            <dt>Publishing date</dt>
+                            <dd>{{ book.publishing_date|date:"d.m.Y"|default:"30.09.2026" }}</dd>
+                        </div>
+
+                        <div class="detail-item">
+                            <dt>Slug</dt>
+                            <dd>{{ book.slug|default:"example-book-title" }}</dd>
+                        </div>
+                    </dl>
+
+                    <div class="actions">
+                        <a class="button button-secondary" href="#">Edit book</a>
+                        <a class="button button-danger" href="#">Delete book</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="reviews-section">
+                <div class="reviews-heading">
+                    <div>
+                        <p class="eyebrow">Reader feedback</p>
+                        <h2>Reviews</h2>
+                    </div>
+                    <a class="button button-secondary" href="#">Add review</a>
+                </div>
+
+                <article class="review-card">
+                    <div class="review-header">
+                        <div>
+                            <h3>{{ review.author|default:"Example author" }}</h3>
+                            <span>{{ review.get_review_type_display|default:"Reader review" }}</span>
+                        </div>
+                        <strong class="rating">{{ review.rating|default:"4.50" }} / 5</strong>
+                    </div>
+
+                    <p>{{ review.body|default:"The body of the review will be displayed here." }}</p>
+
+                    <div class="review-footer">
+                        <span class="status status-info">
+                            {% if review.is_verified %}Verified{% else %}Not verified{% endif %}
+                        </span>
+                        <span>Created: {{ review.created_at|date:"d.m.Y H:i"|default:"30.09.2026 18:00" }}</span>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
